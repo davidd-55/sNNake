@@ -1,4 +1,4 @@
-## sNNake
+## sNNake: Evolutionary Algorithms at Play
 
 ![sNNek](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
 
