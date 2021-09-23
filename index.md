@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+## sNNake
 
-You can use the [editor on GitHub](https://github.com/davidd-55/sNNake/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+![sNNek](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Contributors:
+- Jack Weber
+- Dave Carroll
+- David D'Attile
 
-### Markdown
+### Introduction Outline:
+- **Introductory Paragraph:** For our project, we will use the videogame Snake in order to gain a better understanding of reinforcement learning, genetic algorithms, and collaboration.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- **Background Paragraph:** Reinforcement learning is commonly used in order to train agents to "play" games. This has been done in applications ranging from Chess (Deep Blue), to Go (AlphaGo), to even Snake.
 
-```markdown
-Syntax highlighted code block
+- **Transition paragraph:** Our project attempts to take the simple trained Snake-playing agent a step forward by introducing different algorithms and game variations that will add complexity to the agent's behavior. We hope that these variations will provide insights into how organisms learn and evolve to compete and collaborate.
 
-# Header 1
-## Header 2
-### Header 3
+- **Details Paragraph:** Our project’s largest hurdle will be deciding the correct information and rewards to provide to the agent in order to maximize what we consider as the optimal outcome. We plan to base our project off of and expand the capabilities of an existing, open-source Snake game library written in Python.
 
-- Bulleted
-- List
+- **Assessment Paragraph:** 
+In this section, we will analyze how long it took for the agent to learn how to play Snake under various conditions. The conditions are as follows: (1) reinforcement algorithm playing Snake, (2) reinforcement algorithm evolved using genetic algorithms playing Snake, and (3) agents are forced to collaborate playing multiplayer Snake.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/davidd-55/sNNake/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- **Ethics Paragraph:** Reinforcement algorithms similar to the algorithms we used in training our agent to play Snake utilize rewards mechanisms to drive their behavior. Humans define these rewards, which can often lead to potentially unexpected outcomes when we don't truly consider the ramifications of these definitions.
