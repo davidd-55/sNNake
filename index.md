@@ -20,3 +20,17 @@
 In this section, we will analyze how long it took for the agent to learn how to play Snake under various conditions. The conditions are as follows: (1) reinforcement algorithm playing Snake, (2) reinforcement algorithm evolved using genetic algorithms playing Snake, and (3) agents are forced to collaborate playing multiplayer Snake.
 
 - **Ethics Paragraph:** Reinforcement algorithms similar to the algorithms we used in training our agent to play Snake utilize rewards mechanisms to drive their behavior. Humans define these rewards, which can often lead to potentially unexpected outcomes when we don't truly consider the ramifications of these definitions.
+
+### Literature Review
+
+#### Paper Name
+Description of Paper
+
+#### Paper Name
+Description of Paper
+
+#### Paper Name
+Description of Paper
+
+#### Paper Name
+Description of Paper
