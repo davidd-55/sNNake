@@ -56,11 +56,11 @@ With these key features in  mind, we have decided to base our project on *[AI fo
 
 Since this project leverages the use of a genetic neural network (GNN), training is initialized with a random set of parameters that are fine-tuned over the specified training course. 
 
-Thus, we will not require an initial dataset for this project. Rather, we aim to explore how different networks perform when training is initialized with a random parameter set.
+Thus, we will not require an initial dataset for this project. Rather, we will generate data through simulation and experiment with how different networks perform.
 
 #### Project Details:
 
-As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional GNN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project.
+As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional GNN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project. We also plan to make changes to the information and incentives that the agent is presented with
 
 - Type of NN(s) in Use: 
     
