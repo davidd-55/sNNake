@@ -60,7 +60,7 @@ Thus, we will not require an initial dataset for this project. Rather, we will g
 
 #### Project Details:
 
-As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional GNN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project. We also plan to make changes to the information and incentives that the agent is presented with
+As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional GNN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project. We also plan to make changes to the information and incentives that the agent is presented with.
 
 - Type of NN(s) in Use: 
     
@@ -74,6 +74,8 @@ As described in the Software Details section, the *AI for Snake Game* project we
     - Mutation: The algorithm randomly mutates aspects of the child agent's characteristics in order to prevent training stagnation
 
     After the above steps are performed, the GA creates a set consisting of the top 50% of agents from the initial population and the newly generated child population and propogates them to the following training epoch. This process repeats for a specified number of epochs that each contain gameplay for a specified number of unique agents.
+
+    Further implementation details and the information provided here can be found on the original *AI for Snake Game* [project page](https://craighaber.github.io/AI-for-Snake-Game/website_files/index.html).
 
 - NN Input Details:
     - The [Manhattan distance](https://xlinux.nist.gov/dads/HTML/manhattanDistance.html) between the snake agent's head and the game board fruit
