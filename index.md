@@ -19,7 +19,7 @@
 - **Assessment Paragraph:** 
 In this section, we will analyze how long it took for the agent to learn how to play Snake under various conditions. The conditions are as follows: (1) reinforcement algorithm playing Snake, (2) reinforcement algorithm evolved using genetic algorithms playing Snake, and (3) agents are forced to collaborate playing multiplayer Snake.
 
-- **Ethics Paragraph:** Reinforcement algorithms similar to the algorithms we used in training our agent to play Snake utilize rewards mechanisms to drive their behavior. Humans define these rewards, which can often lead to potentially unexpected outcomes when we don't truly consider the ramifications of these definitions.
+- **Ethics Paragraph:** Reinforcement algorithms similar to the algorithms we used in training our agent to play Snake utilize rewards mechanisms to drive their behavior. With our specific application and generally with reinforcement algorithms, humans define these rewards. This can often lead to unexpected outcomes when we don't truly consider the ramifications of these definitions.
 
 ## Literature Review
 
@@ -52,19 +52,21 @@ As a component of the literature review, each member of our group attempted to c
 
 With these key features in  mind, we have decided to base our project on *[AI for Snake Game](https://craighaber.github.io/AI-for-Snake-Game/website_files/index.html)* written by [Craig Haber](https://github.com/craighaber). This project is well-written, easily extensible, and we have already made modifications that allow for training to run on the Pomona server. The original repository can be found [here](https://github.com/craighaber/AI-for-Snake-Game), and our fork can be found at [sNNakeCode](https://github.com/jackdavidweber/sNNakeCode).
 
+We will integrate PyTorch into the project when designing our own algorithms, which will provide us with the framework to try different types of algorithms using classroom techniques.
+
 #### Data Details:
 
-Since this project leverages the use of a genetic neural network (GNN), training is initialized with a random set of parameters that are fine-tuned over the specified training course. 
+Since this project leverages the use of neuroevolution, training is initialized with a random set of parameters that are fine-tuned over the specified training course. 
 
 Thus, we will not require an initial dataset for this project. Rather, we will generate data through simulation and experiment with how different networks perform.
 
 #### Project Details:
 
-As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional GNN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project. We also plan to make changes to the information and incentives that the agent is presented with.
+As described in the Software Details section, the *AI for Snake Game* project we are building on includes a fully-funtional neuroevolution-based NN capable of training an agent to play the snake game. Our details below reflect the implementation of this network, but we fully intend to implement and compare multiple networks' performance over the course of this project. We also plan to make changes to the information and incentives that the agent is presented with.
 
 - Type of NN(s) in Use: 
     
-    This project leverages the use of a GNN comprised of a separate genetic algorithm (GA) and NN. This functions by training snake agents via a 4 layer (1 input, 2 hidden, 1 output) NN. 
+    This project leverages the use of a neuroevolution-based NN composed of a separate genetic algorithm (GA) and NN. This functions by training snake agents via a 4 layer (1 input, 2 hidden, 1 output) NN. 
     
     At the end of a training epoch, the set of *n* agent results is fed to a GA that improves agent performance through the following four methods (note that Fitness Calculations occur once per epoch, and Selection, Crossover, and Mutation are performed sequentially *n*/2 times):
 
