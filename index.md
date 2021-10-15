@@ -1,42 +1,75 @@
 # sNNake: Evolutionary Algorithms at Play
 
-![sNNek](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
+![sNNake](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
 
 ## Contributors:
 - Jack Weber
 - Dave Carroll
 - David D'Attile
 
-## Introduction Outline:
-- **Introductory Paragraph:** For our project, we will use the videogame Snake in order to gain a better understanding of reinforcement learning, genetic algorithms, and collaboration.
+## Introduction
+### Background
+Even if you are not interested in computer science, you have almost definitely interacted with reinforcement algorithms in your day-to-day life. These algorithms suggest which Netflix shows we will like. They help advertisers determine the optimal advertisement to present us with. They are better than humans at Chess, Go, and driving.
 
-- **Background Paragraph:** Reinforcement learning is commonly used in order to train agents to "play" games. This has been done in applications ranging from Chess (Deep Blue), to Go (AlphaGo), to even Snake.
+Given the importance of these algorithms in our lives, sNNake is a project aimed at better understanding how reinforcement algorithms work. We do this by focusing on the goal of teaching an agent to play Screen-Snake (SS). SS is a simple game where the snake tries to grow in length by eating more fruits. The snake dies when it collides with the boundary wall or part of its own body.
 
-- **Transition paragraph:** Our project attempts to take the simple trained Snake-playing agent a step forward by introducing different algorithms and game variations that will add complexity to the agent's behavior. We hope that these variations will provide insights into how organisms learn and evolve to compete and collaborate.
+So, how do we teach an agent to play SS? Well, one way to do it would be to try to come up with a set of rules that we feed directly into the agent. Rules like “if collision is imminent, turn left” or “if moving away from fruit, turn around.” This would be quite difficult and take a lot of time.
 
-- **Details Paragraph:** Our project’s largest hurdle will be deciding the correct information and rewards to provide to the agent in order to maximize what we consider as the optimal outcome. We plan to base our project off of and expand the capabilities of an existing, open-source Snake game library written in Python.
+What if instead, we tried to get the agent to learn by trial and error? We let the agent play randomly and whenever it does something positive (like get a fruit) we reward it. Whenever the agent does something negative (like collide with a wall), we punish it. Over time, by reinforcing positive actions and disincentivizing negative actions, the agent will start to figure out the best strategies to get more positive rewards. The agent will learn how to play SS without us ever having to explicitly teach it.
 
-- **Assessment Paragraph:** 
-In this section, we will analyze how long it took for the agent to learn how to play Snake under various conditions. The conditions are as follows: (1) reinforcement algorithm playing Snake, (2) reinforcement algorithm evolved using genetic algorithms playing Snake, and (3) agents are forced to collaborate playing multiplayer Snake.
+This is the essence of reinforcement learning algorithms. The algorithm requires us to provide rewards for actions. It then tries many strategies to complete a given task. The strategies that are rewarded are given more weight and the algorithm becomes better at the assigned task.
 
-- **Ethics Paragraph:** Reinforcement algorithms similar to the algorithms we used in training our agent to play Snake utilize rewards mechanisms to drive their behavior. With our specific application and generally with reinforcement algorithms, humans define these rewards. This can often lead to unexpected outcomes when we don't truly consider the ramifications of these definitions.
+### Details
+As discussed, the agent will teach itself the “rules” of SS by a trial-and error process where positive actions are rewarded and negative actions are punished. Our specific first reinforcement algorithm implementation, built on [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game) by Craig Haber, heavily incentivizes a high score (snake length at the end of a game) and moderately incentivizes the amount of time a game takes (longer is better). 
 
-## Literature Review
+The agent is trained to play the game by prioritizing the aforementioned incentives. For each move, the agent receives a set of inputs, then the reinforcement algorithm interprets these inputs and returns which direction the agent should proceed to on the game board. Specifically, the inputs recognized are the Manhattan distance between the snake and the fruit, the amount of free space in any direction (up, down, left, or right), and the current length of the snake. At the end of a training generation, the reinforcement algorithm’s weights are shifted towards those of the higher performing agents, and training on the next generation begins.
 
-#### Tutorial: [How to Teach AI to Play Games: Deep Reinforcement Learning](https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a)
-This tutorial walks through how to train a neural network to play Snake using a Deep Reinforcement Learning algorithm coded in Python. The tutorial displays very promising results accomplished with little training time. However, running our own version, we were not able to replicate the results to the same standard and we experienced problems with the game display. With some troubleshooting and debugging, this could be a good project to build on top of for our project.
+It is worth noting two important items. First, this project’s initial implementation contains a genetic algorithm (GA) that both selects which agents were most successful and creates a new set of agents “bred” from those most successful. The GA then passes this set of agents forward to the next generation for training. Second, the current reinforcement algorithm does not specifically de-incentivize any actions. No “punishments” exist because a low value of either the snake’s length or the time played represent an unsuccessful game from the perspective of the incentives.
 
-#### Tutorial: [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game)
-This tutorial walks through how to train a neural network to play Snake using Deep Learning while also utilizing a genetic algorithm to combine and mutate successful neural networks. This Python code base is clean and well documented. This seems like an ideal project build on top of for our project.
+Currently, we are reformatting existing components of the original AI for Snake Game project such as integrating the PyTorch library, decoupling the GA from the initial reinforcement algorithm, and creating an interface that various PyTorch-powered NNs we design will implement. These structural changes will allow us to more easily implement various types of NNs and observe their impacts on an agent’s performance.
 
-#### Tutorial: [SnakeAI](https://github.com/greerviau/SnakeAI)
-This tutorial similarly walks through how to train a neural network to play Snake using Deep Learning and also utilizes a genetic algorithm to combine and mutate successful neural networks. This project is coded in Processing, a language our team is not experienced with for development. This seems like an unlikely project to build on but could be useful for cross referencing learning algorithms and techniques.
+In addition to these structural changes, we hope to tweak game aspects such as game 
+board size, number of agents playing at once, and adding cooperation/competition incentives to multiplayer SS as the project progresses.
 
-#### Article: [A Hybrid Algorithm Using a Genetic Algorithm and Multiagent Reinforcement Learning Heuristic to Solve the Traveling Salesman Problem](https://link.springer.com/article/10.1007/s00521-017-2880-4)
-In this article, the authors explain how they use multi-agent reinforcement learning and genetic algorithms in order to solve the traveling salesman problem. This is helpful for our project since we would like to experiment with evolving reinforcement learning algorithms with genetic algorithms. We are also interested in learning about the interactions between multiple agents, or snakes in our case.
+### Assessment
+Currently, we have not implemented custom NNs and reinforcement algorithms or measured/compared their respective performance for an agent playing SS. However, we have [modified the project](https://github.com/jackdavidweber/sNNakeCode/pull/1) such that we could train 1000 generations on Pomona’s HPC server with the GA & reinforcement learning algorithm from our “Details” section and produced the following results:
 
-#### Article: [Autonomous Agents in Snake Game via Deep Reinforcement Learning](https://www.researchgate.net/publication/327638529_Autonomous_Agents_in_Snake_Game_via_Deep_Reinforcement_Learning)
-In this paper, the authors leverage a Deep Q-Learning Network (DQN) to teach an agent how to play Snake. The researchers’ implementation uses a series of four pre-processed screenshots of the game board as inputs, 3 convolutional layers & 1 fully-connected layer (all using the ReLU activation function), and 4 outputs corresponding to the snake's movements. The authors leveraged a novel training concept they referred to as a “training gap” - this allowed the snakes to only focus on non game-ending movement immediately after successfully eating a piece of fruit, since the direction of the respawned fruit could often lead snakes to colide with their tail.
+![Average Score vs  Generation](https://user-images.githubusercontent.com/19896216/137426767-8fcf979b-9b71-4596-8260-bee82b7c06da.png)
+
+As we can see, the average score per training generation generally increased as training proceeded. The results for this algorithm suggest that training an agent to play SS via reinforcement algorithms can be quite successful. As the project progresses, we will provide the results and analysis of varying methods used to train an agent to play SS similar to the details provided above.
+
+### Ethics
+As discussed above, reinforcement algorithms, similar to the algorithms we use in training our agent to play SS, utilize rewards mechanisms to drive behavior. Humans define these rewards, and in general, this can lead to unexpected and detrimental behavior especially when the desired behavior is very high stakes. For example, if the military decided to train a robotic agent using a reinforcement algorithm to seek out adversaries in a warzone, it would be incredibly hard to accurately define that “reward” and of course, this could potentially lead to the agent accidentally flagging civilians as adversaries. 
+
+Thankfully, our project is quite removed from the physical world and our agent is not being trained with any real-world data; it is simply learning how to play a video game and our exploration is in the pursuit of improving our own understanding of reinforcement algorithms. Nonetheless, it is almost always the case that innocuous technologies can be reintroduced into real-world contexts, potentially leading to harsh ramifications. It is with this in mind that we would like to formally state that the research and experiments conducted in this project are in no way intended to be repurposed for harm of any kind.
+
+Given that our project is only in its early stages—we are only at the moment experimenting with different NNs for learning to play SS—the ethical considerations are fairly generic and would apply to any project involving reinforcement algorithms. However, as our project evolves and we start to experiment with changes to the game itself, we may come across more specific ethical considerations. For example, one idea we might explore is training snake agents in different environments, in other words changing the shape and size of the board and/or introducing obstacles. Returning to our war-machine example, we would not want our success in training an obstacle-weary snake agent to translate into the development of an obstacle-weary war-machine. Or for another example, we are interested in experimenting with training multiple snake agents to play in the same game with the hopes of observing learned collaboration. We would also not want success in this area to contribute to the development of a collaborating army of war-machines!
+
+Another completely different dimension of ethical concerns arise from considering the relevance of our project to biology. After all, our project centers around training agents to survive and adapt in an environment with particular constraints. We are interested in trying to breed successful snake agents and select behavior that leads to success. While this project borrows language from biology and loosely simulates a kind of evolution, we acknowledge that the development of snake behavior in this project does not necessarily apply to the development of human or other animal behaviors. Any non-trivial connection made between the two should excite major scrutiny.
+
+## Related Works
+For related works, our team opted to investigate both academic literature and implementations related to our project. 
+
+In the first article we reviewed, [A Hybrid Algorithm Using a Genetic Algorithm and Multiagent Reinforcement Learning Heuristic to Solve the Traveling Salesman Problem](https://link.springer.com/article/10.1007/s00521-017-2880-4) the authors explain how they use multi-agent reinforcement learning and genetic algorithms in order to solve the traveling salesman problem. This is helpful for our project since we would like to experiment with evolving reinforcement learning algorithms with genetic algorithms. We are also interested in learning about the interactions between multiple agents, or snakes in our case.
+
+In [Autonomous Agents in Snake Game via Deep Reinforcement Learning](https://www.researchgate.net/publication/327638529_Autonomous_Agents_in_Snake_Game_via_Deep_Reinforcement_Learning), the second paper we reviewed, the authors leverage a Deep Q-Learning Network (DQN) to teach an agent how to play SS. The researchers’ implementation uses a series of four pre-processed screenshots of the game board as inputs, 3 convolutional layers & 1 fully-connected layer (all using the ReLU activation function), and 4 outputs corresponding to the snake’s movements. The authors leveraged a novel training concept they referred to as a “training gap” - this allowed the snakes to only focus on non game-ending movement immediately after successfully eating a piece of fruit, since the direction of the respawned fruit could often lead snakes to collide with their tail.
+
+We chose to explore open-source implementations with the goal of selecting a project to build sNNake upon. This approach allowed us to focus less on building a SS game from scratch and more on the implementation of NNs teaching agents how to play the game. 
+
+First, we explored the [SnakeAI](https://github.com/greerviau/SnakeAI) tutorial which walks through how to train a neural network to play SS using Deep Learning and also utilizes a genetic algorithm to combine and mutate successful neural networks. This project is coded in Processing, a language our team is not experienced with for development. This seems like an unlikely project to build on but could be useful for cross referencing learning algorithms and techniques.
+
+Second, we investigated [How to Teach AI to Play Games: Deep Reinforcement Learning](https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a). This tutorial walks through how to train a neural network to play Snake using a Deep Reinforcement Learning algorithm coded in Python. The tutorial displays very promising results accomplished with little training time. However, running our own version, we were not able to replicate the results to the same standard and we experienced problems with the game display. 
+
+Finally, [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game) walks through how to train a neural network to play SS using Deep Learning while also utilizing a genetic algorithm to combine and mutate successful neural networks. Importantly, this Python code base is clean and well documented. This seems like an ideal project to base our project on.
+
+Among all projects surveyed, we chose to base sNNake off of AI for Snake Game for the following reasons:
+* Code base is clearly commented and cleanly written
+* Code base written in Python 3
+* Implementation contained easily modifiable game board/logic rules
+* Implementation contained a genetic NN component for training that we can study
+* Implementation contained a framework for easily expanding existing NN capabilities
+
+We believe that the combination of reviewing academic research and experimenting with pre existing applications have provided our team ample background to pursue the implementation of sNNake.
 
 ## Project Update #1
 
