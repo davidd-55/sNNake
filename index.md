@@ -135,4 +135,4 @@ We have attempted to implement our own fork of the neuroevolutionary algorithm i
 We have encountered two major issue so far over the course of this project:
 
 - The initial genetic algorithm was implemented in an entirely manual way; there is no use of PyTorch. This has led to the additional development overhead of integrating PyTorch into the project.
-- As previously discussed, we have found that more research overhead than previously expected will be needed for the effective implementation of various neuroevolutionary algorithms.
+- As previously discussed, we have found that more research overhead than previously expected will be needed for the effective implementation of reinforcement learning and neuroevolutionary algorithms.
