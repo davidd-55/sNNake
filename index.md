@@ -121,3 +121,18 @@ As described in the Software Details section, the *AI for Snake Game* project we
     - This network has four outputs (representing the four available movement directions) ranging in value from 0 to 1 where
     - The snake agent will move in the direction of the output with the highest associated value
 
+
+## Project Update #2
+
+### What have we completed/tried to complete?
+
+We have been able to successfully modify the *AI for Snake Game* project such that we can train an agent to play the snake game via neuroevolutionary methods on the Pomona server. Previously, this was not possible since the game required a graphical representation of the training/playing. Additionally, we have added improved data collection and visualization for fitness through generations.
+
+We have attempted to implement our own fork of the neuroevolutionary algorithm in use withing this project, however, we have realized that there is extensive research required on our part to achieve this. As a result of this recognition, we have spent the bulk of our time up until now researching methods such as Deep-Q reinforcement learning. We now plan to leverage OpenAI Gym for the implementation of various algorithms.
+
+### What issues have we encountered?
+
+We have encountered two major issue so far over the course of this project:
+
+- The initial genetic algorithm was implemented in an entirely manual way; there is no use of PyTorch. This has led to the additional development overhead of integrating PyTorch into the project.
+- As previously discussed, we have found that more research overhead than previously expected will be needed for the effective implementation of various neuroevolutionary algorithms.
