@@ -146,4 +146,14 @@ Unfortunately the NN component of the original *AI for Snake Game* was implement
 The nature of our project is such that we aren't actually utilizing large datasets to train snake agents, we are rather utilizing the data created by snake agents playing along with a set of rewards and punishments to teach our agents the desired behavior.
 
 ### Analysis
-In terms of analysis and assessment, we have altered the original *AI for Snake Game* repository to provide us with cleaned data describing the performance of the genetic algorthm's training, however we will need to look into the tools provided by OpenAI Gym for analysis and assessment so that we may compare the two methods for training snake agents.
+In terms of analysis and assessment, we have altered the original *AI for Snake Game* repository to provide us with cleaned data describing the performance of the genetic algorthm's training. For the Reinforcement Learning Algorithm, we created a notebook that allows us to train and test different versions of agents against each other.
+
+## Discussion Outline
+In this section, we will present how game and algorithm modifications affected the average high score of the snake after X hours of training and Y hours of testing.
+
+* **RL vs. GA**: The Reinforcement Learning Algorithm generally tended to perform (better/worse) than the Genetic Algorithm. We attempted to make the comparison as fair as possible but do recognize that the differences in the way the algorithms work make a 1:1 comparison very difficult which likely introduced noise.
+* **Reward Structure**: For the RL Algorithm, certain reward structures worked better than others. For example, penalizing the snake for not finding a fruit (improved/decreased) the average high score by ___%.
+* **Different RL Algorithms**: [A2C](https://stable-baselines3.readthedocs.io/en/master/modules/a2c.html) generally performed (better/worse) than [DQN](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) which did (better/worse) than [PPO](https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html)
+* **RL Algorithm HyperParameter Tuning**: We were able to improve average high score by ___ when we changed the learning rate, number of hidden layers, number of neurons, etc.
+* **Board Size**: Decreasing the board size made it significantly harder for the snake to score well. Even if we adjust based on the high score, we still find that on smaller boards the snake does relatively worse.
+* **Other Game Mods**: Adding multiple snakes had an interesting effect... Adding bombs also had an interesting effect...
