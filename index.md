@@ -135,7 +135,48 @@ The nature of our project is such that we aren't actually utilizing large datase
 ### Analysis
 In terms of analysis and assessment, we have altered the original *AI for Snake Game* repository to provide us with cleaned data describing the performance of the genetic algorthm's training. For the Reinforcement Learning Algorithm, we created a notebook that allows us to train and test different versions of agents against each other.
 
-## Discussion Outline
+## Discussion
+Over the course of the project we ran [BLANK number] experiments in order to improve the overall performance of the snake. Each experiment changed one or more aspects of how the training worked. In the following sections we explain our learnings through these experiments. Then we will describe the final parameters that we used to achieve a high score of [BLANK] and median score of [BLANK].
+
+### Board Size
+We experimented with two different board sizes: a 10x10 board and a 5x5 board. As one might expect, the snake was able to learn signicantly more quickly on a smaller board. On a 5x5 board, there are 25 pixels that make up the board representation. On a 10x10 board, there are 100 pixels. Thus on a 10x10 board, the snake needs much more time to really get a handle on how the game works. It takes longer for the snake to randomly find a fruit and it takes longer for the snake to randomly run into a wall.
+
+#### Avg Scores across different board sizes
+|       | Avg Score | Avg High Score |
+|-------|-----------|----------------|
+| 5x5   | BLANK     | BLANK          |
+| 10x10 | BLANK     | BLANK          |
+Note that for all data 10 million train steps and 100,000 test steps were used
+
+### Board Representation
+We had two different ways of representing the board to the RL algorithm. 
+
+The only difference between the two representations is that one shows the border and the other does not. We found that this... [BLANK]
+
+#### Avg Scores across different board representations
+
+|                        | Avg Score | Avg High Score |
+|------------------------|-----------|----------------|
+| border represented     | BLANK     | BLANK          |
+| border not represented | BLANK     | BLANK          |
+
+### Reward Structure
+
+### Algorithm
+Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different reinforcement learning algorithms affected results. We found that...[BLANK].
+
+#### Avg Scores across different RL Algorithms
+|     | Avg Score | Avg High Score |
+|-----|-----------|----------------|
+| A2C | BLANK     | BLANK          |
+| DQN | BLANK     | BLANK          |
+| PPO | BLANK     | BLANK          |
+
+The above table shows the average scores for the different RL algorithms. Each RL algorithm ran the same set of 7 experiments and we averaged together the results.
+
+For each experiment, we changed one or more parameters that affected the 
+
+47 experiments in .  nearly 100 different
 In this section, we will present how game and algorithm modifications affected the average high score of the snake after X hours of training and Y hours of testing.
 
 * **RL vs. GA**: The Reinforcement Learning Algorithm generally tended to perform (better/worse) than the Genetic Algorithm. We attempted to make the comparison as fair as possible but do recognize that the differences in the way the algorithms work make a 1:1 comparison very difficult which likely introduced noise.
