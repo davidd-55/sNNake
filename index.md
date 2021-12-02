@@ -146,10 +146,14 @@ We experimented with two different board sizes: a 10x10 board and a 5x5 board. A
 |-------|-----------|----------------|
 | 5x5   | BLANK     | BLANK          |
 | 10x10 | BLANK     | BLANK          |
+
 Note that for all data 10 million train steps and 100,000 test steps were used
 
 ### Board Representation
 We had two different ways of representing the board to the RL algorithm. 
+Border Not Represented             |  Border Is Represented 
+:-------------------------:|:-------------------------:
+![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
 
 The only difference between the two representations is that one shows the border and the other does not. We found that this... [BLANK]
 
@@ -161,6 +165,7 @@ The only difference between the two representations is that one shows the border
 | border not represented | BLANK     | BLANK          |
 
 ### Reward Structure
+[BLANK] This section is not worth writing until we actually have data
 
 ### Algorithm
 Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different reinforcement learning algorithms affected results. We found that...[BLANK].
@@ -174,17 +179,13 @@ Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), 
 
 The above table shows the average scores for the different RL algorithms. Each RL algorithm ran the same set of 7 experiments and we averaged together the results.
 
-For each experiment, we changed one or more parameters that affected the 
+### Best Snake
+Using all of the above learnings, we found that the best snake that we could train had the following traits:
+* DQN Algorithm
+* [BLANK] Reward Structure
+* [BLANK] Border Representation
 
-47 experiments in .  nearly 100 different
-In this section, we will present how game and algorithm modifications affected the average high score of the snake after X hours of training and Y hours of testing.
-
-* **RL vs. GA**: The Reinforcement Learning Algorithm generally tended to perform (better/worse) than the Genetic Algorithm. We attempted to make the comparison as fair as possible but do recognize that the differences in the way the algorithms work make a 1:1 comparison very difficult which likely introduced noise.
-* **Reward Structure**: For the RL Algorithm, certain reward structures worked better than others. For example, penalizing the snake for not finding a fruit (improved/decreased) the average high score by ___%.
-* **Different RL Algorithms**: [A2C](https://stable-baselines3.readthedocs.io/en/master/modules/a2c.html) generally performed (better/worse) than [DQN](https://stable-baselines3.readthedocs.io/en/master/modules/dqn.html) which did (better/worse) than [PPO](https://stable-baselines3.readthedocs.io/en/master/modules/ppo.html)
-* **RL Algorithm HyperParameter Tuning**: We were able to improve average high score by ___ when we changed the learning rate, number of hidden layers, number of neurons, etc.
-* **Board Size**: Decreasing the board size made it significantly harder for the snake to score well. Even if we adjust based on the high score, we still find that on smaller boards the snake does relatively worse.
-* **Other Game Mods**: Adding multiple snakes had an interesting effect... Adding bombs also had an interesting effect...
+This snake achieved a high score of [BLANK]. We even tried testing it on a larger board than it was trained on which had very positive results!
 
 ## Appendix
 ### Genetic Algorithm Discussion
