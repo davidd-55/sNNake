@@ -144,3 +144,13 @@ In this section, we will present how game and algorithm modifications affected t
 * **RL Algorithm HyperParameter Tuning**: We were able to improve average high score by ___ when we changed the learning rate, number of hidden layers, number of neurons, etc.
 * **Board Size**: Decreasing the board size made it significantly harder for the snake to score well. Even if we adjust based on the high score, we still find that on smaller boards the snake does relatively worse.
 * **Other Game Mods**: Adding multiple snakes had an interesting effect... Adding bombs also had an interesting effect...
+
+## Appendix
+### Genetic Algorithm Discussion
+As discussed above, we did experiment briefly with using genetic algorithms to train our agent but decided to focus on Reinforcement Learning algorithms instead. That said, before completely abandoning the effort, we trained and tested [Craig Haber's genetic algorithm snake agent](https://craighaber.github.io/AI-for-Snake-Game/website_files/index.html):
+
+![Average Score vs  Generation](https://user-images.githubusercontent.com/19896216/137426767-8fcf979b-9b71-4596-8260-bee82b7c06da.png)
+
+The algorithm was run for 3 days 4 hours and 44 minutes on a 10x10 board. By the end of the training, the agent was getting an average score of around 10. By contrast, we trained our best performing reinforcement learning algorithm on a 10x10 for [BLANK] hours and achieved an average score of [BLANK]. 
+
+[BLANK] Commentary on comparison
