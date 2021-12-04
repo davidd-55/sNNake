@@ -148,6 +148,7 @@ Over the course of the project we ran [BLANK number] experiments in order to imp
 We experimented with two different board sizes: a 10x10 board and a 5x5 board. As one might expect, the snake was able to learn signicantly more quickly on a smaller board. On a 5x5 board, there are 25 pixels that make up the board representation. On a 10x10 board, there are 100 pixels. Thus on a 10x10 board, the snake needs much more time to really get a handle on how the game works. It takes longer for the snake to randomly find a fruit and it takes longer for the snake to randomly run into a wall.
 
 #### Avg Scores across different board sizes
+
 |       | Avg Score | Avg High Score |
 |-------|-----------|----------------|
 | 5x5   | BLANK     | BLANK          |
@@ -157,6 +158,7 @@ Note that for all data 10 million train steps and 100,000 test steps were used
 
 ### Board Representation
 We had two different ways of representing the board to the RL algorithm. 
+
 Border Not Represented             |  Border Is Represented 
 :-------------------------:|:-------------------------:
 ![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
@@ -177,6 +179,7 @@ The only difference between the two representations is that one shows the border
 Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different reinforcement learning algorithms affected results. We found that...[BLANK].
 
 #### Avg Scores across different RL Algorithms
+
 |     | Avg Score | Avg High Score |
 |-----|-----------|----------------|
 | A2C | BLANK     | BLANK          |
