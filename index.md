@@ -163,14 +163,16 @@ Border Not Represented             |  Border Is Represented
 :-------------------------:|:-------------------------:
 ![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
 
-The only difference between the two representations is that one shows the border and the other does not. We found that this... [BLANK]
+To test which representation worked better, we ran 9 experiments where the border was **not** represented ([raw results](https://docs.google.com/spreadsheets/d/1z6CgToOEh4_5flIjP7yJuhiC7Jk4EMjYcKxHdy7ojSc/edit?usp=sharing))followed by the same 9 experiments where the border **was** represented ([raw results](https://docs.google.com/spreadsheets/d/13lIOnKPxrhoSfVgDq7u9D8hhewXLtbik5OmuYL_IKBg/edit?usp=sharing)). We then took the average of the mean scores and high scores for each experiment to create the following table: 
 
 #### Avg Scores across different board representations
 
-|                        | Avg Score | Avg High Score |
-|------------------------|-----------|----------------|
-| border represented     | BLANK     | BLANK          |
-| border not represented | BLANK     | BLANK          |
+|                        | Mean Score | Median Score | High Score |
+|------------------------|------------|--------------|------------|
+| border represented     | 3.769      | 3.667        | 12.444     |
+| border not represented | 3.624      | 3.667        | 11.889     |
+
+The border representation resulted in a slight improvement to the mean and high scores. More data would be required to determine if this is statistically significant, but it makes sense that the border would help the model. Without the border representation, the snake head simply disapears when it collides with a wall. With the border representation, the snake head replaces one of the border spaces. If our hypothesis is correct, this allows the model to get a more accurate understanding of the state at which the snake fails.
 
 ### Reward Structure
 [BLANK] This section is not worth writing until we actually have data
