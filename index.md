@@ -107,16 +107,16 @@ We experimented with two different board sizes: a 10x10 board and a 5x5 board. A
 | 5x5   | BLANK     | BLANK          |
 | 10x10 | BLANK     | BLANK          |
 
-Note that for all data 10 million training steps and 100,000 testing steps were used
+###### *Note: for all results discussed below 10,000,000 training steps and 100,000 testing steps were used.*
 
 #### 5b. Board Representation
-We had two different ways of representing the board environment to the reinforcement algorithm. 
+We had two different ways of representing the board environment to the reinforcement algorithm: a board with a specified border and a board without such a border. 
 
 Border Not Represented             |  Border Is Represented 
 :-------------------------:|:-------------------------:
 ![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
 
-To test which representation worked better, we ran 9 experiments where the border was **not** represented ([raw results](https://docs.google.com/spreadsheets/d/1z6CgToOEh4_5flIjP7yJuhiC7Jk4EMjYcKxHdy7ojSc/edit?usp=sharing))followed by the same 9 experiments where the border **was** represented ([raw results](https://docs.google.com/spreadsheets/d/13lIOnKPxrhoSfVgDq7u9D8hhewXLtbik5OmuYL_IKBg/edit?usp=sharing)). We then took the average of the mean scores and high scores for each experiment to create the following table: 
+To test which representation worked better, we ran 27 experiments where the border was **not** represented ([raw results](https://docs.google.com/spreadsheets/d/1z6CgToOEh4_5flIjP7yJuhiC7Jk4EMjYcKxHdy7ojSc/edit?usp=sharing))followed by the same 27 experiments where the border **was** represented ([raw results](https://docs.google.com/spreadsheets/d/13lIOnKPxrhoSfVgDq7u9D8hhewXLtbik5OmuYL_IKBg/edit?usp=sharing)). We then took the average of the mean scores and high scores for each experiment to create the following table: 
 
 #### Avg Scores across different board representations
 
