@@ -123,7 +123,7 @@ Border Not Represented             |  Border Is Represented
 :-------------------------:|:-------------------------:
 ![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
 
-To test which representation worked better, we ran 18 experiments (9 using DQN algorithm and 9 using the A2C algorithm) where the border was **not** represented followed by the same 18 experiments where the border **was** represented. We hypothesized that a representation of the border would allow the model to get a more accurate understanding of the state at which the snake fails. The average of the mean scores, the median scores, and the high scores for each experiment can be found in the following table: 
+To test which representation worked better, we ran 18 experiments on a 5x5 game board (9 using DQN algorithm and 9 using the A2C algorithm) where the border was **not** represented followed by the same 18 experiments where the border **was** represented. We hypothesized that a representation of the border would allow the model to get a more accurate understanding of the state at which the snake fails. The average of the mean scores, the median scores, and the high scores for each experiment can be found in the following table: 
 
 #### Average scores across different board representations
 
@@ -136,6 +136,8 @@ To our surprise, the border representation resulted in a slight disadvantage acr
 
 Interestingly, when viewing our results by algorithm used, we found that DQN training with border representation performed better than the same training without a border representation, yet A2C training yielded the opposite result. 
 
+#### Average scores across different board representations and algorithms
+
 |     | Border Represented | Mean Score | Median Score | High Score |
 |-----|--------------------|------------|--------------|------------|
 | DQN | FALSE              | 3.624      | 3.667        | 11.889     |
@@ -146,17 +148,44 @@ Interestingly, when viewing our results by algorithm used, we found that DQN tra
 Even though A2C training without a border representation contradicted our expectations, in general it outperformed DQN which is reiterated in [section 5d](#5d.-algorithm).
 
 #### 5c. Reward Structures
-Our experiments used 9 custom reward structures to define whether to "punish" or "reward" snake agents at each step in the training process. Details of each reward structure, denoted RS-A through RS-I, can be found below:
+Our experiments used 9 custom reward structures to define whether to "punish" or "reward" snake agents at each step in the training process. Details of each reward structure, denoted *RS-A* through *RS-I*, can be found below:
 
-- RS-A:
-- RS-B:
-- RS-C:
-- RS-D:
-- RS-E:
-- RS-F:
-- RS-G:
-- RS-H:
-- RS-I:
+- *RS-A:* "Kill after 10 idle moves"
+    - We reward the snake +1 for consuming fruit and punish it -1 for hitting a wall. We kill the snake after 10 moves of failing to find and consume a fruit.
+- *RS-B:* "Kill after 30 idle moves"
+    - Same as *RS-A*, but kill the agent after 30 moves rather than 10.
+- *RS-C:* "Kill and punish after 10 idle moves"
+    - We reward the snake +1 for consuming fruit and punish it -1 for hitting a wall. We kill and punish the snake -1 after 10 moves of failing to find and consume a fruit.
+- *RS-D:* "Kill and punish half as much after 10 idle moves"
+    - Same as *RS-C*, but kill and punish the agent -.5 rather than -1 after 10 idle moves.
+- *RS-E:* "Kill and punish one tenth as much after 10 idle moves"
+    - Same as *RS-C*, but kill and punish the agent -.1 rather than -1 after 10 idle moves.
+- *RS-F:* "Kill and punish after 30 idle moves"
+    - We reward the snake +1 for consuming fruit and punish it -1 for hitting a wall. We kill and punish the snake -1 after 30 moves of failing to find and consume a fruit.
+- *RS-G:* "Kill and punish half as much after 30 idle moves"
+    - Same as *RS-F*, but kill and punish the agent -.5 rather than -1 after 30 idle moves.
+- *RS-H:* "Kill and punish one tenth as much after 30 idle moves"
+    - Same as *RS-F*, but kill and punish the agent -.1 rather than -1 after 30 idle moves.
+- *RS-I:* "Punish one tenth for inactivity"
+    - We reward the snake +1 for consuming fruit and punish it -1 for hitting a wall. We punish it -.1 for not doing anything, i.e. not consuming a fruit or colliding with a wall.
+
+We conducted a total of 27 experiments in an effort to conclude which of the 9 reward structures worked the best. For each reward structure, we experimented its performance when paired with each of the DQN, A2C, and PPO algorithms (5x5 board, no border representation) and averaged the results in the table below:
+
+#### Average scores across different reward structures
+
+|        | Mean Score | Median Score | High Score |
+|--------|------------|--------------|------------|
+| *RS-A* | 4.335      | 4.667        | 13.000     |
+| *RS-B* | 6.407      | 8.167        | 16.000     |
+| *RS-C* | 4.817      | 5.667        | 12.667     |
+| *RS-D* | 4.999      | 5.667        | 13.000     |
+| *RS-E* | 4.956      | 5.333        | 13.333     |
+| *RS-F* | 7.074      | 7.667        | 16.333     |
+| *RS-G* | 8.843      | 11.333       | 17.667     |
+| *RS-H* | 8.591      | 10.333       | 18.333     |
+| *RS-I* | 3.096      | 3.000        | 7.000      |
+
+The table demonstrates that *RS-G* and *RS-H*, i.e. killing and punishing the snake -.5/-.1 for 30 idle moves, are the best of the tested reward structures. Interestingly, *RS-G* tended to achieve slightly better mean/median scores, whereas *RS-H* achieved a slighty greater average high score.
 
 #### 5d. Algorithms
 Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different RL algorithms affected results. ] In the end, we found that the stable-baseline3 implementation of PPO performed the best.
@@ -174,14 +203,14 @@ The above table shows the averaged scores for the different RL algorithms. We pe
 #### 5e. Best Snake
 Using all of the above learnings, we found that the best snake that we could train in terms of high score had the following traits:
 * Algorithm: PPO
-* Reward Structure: H - punish one tenth as much after 30 idle moves
+* Reward Structure: *RS-H*
 * Border Represented: FALSE (No border represented = TRUE equivalent available)
 
-Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged reward structure G.
+Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged *RS-G*. This observation reflects the findings from the table in [section 5c](#5c.-reward-structures).
 
 The first snake achieved a high score of 23 on a 5x5 board, which is only 2 points shy of the maximum score of 25. Moreover, the version which achieved a mean score of 12.858 and a median score of 18 quickly learned how to efficiently play the game. 
 
-We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d.-algorithms)). Additionally, reward structures G and H ... [BLANK] (see [section 5c](#5c.-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
+We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d.-algorithms)). Additionally, reward structures G and H tend to coorespond to higher mean/median and high scores, respectively (see [section 5c](#5c.-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
 
 ## 6. Ethics
 
