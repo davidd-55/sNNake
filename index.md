@@ -1,9 +1,12 @@
 # sNNake: Reinforcement Learning Strategies in Screen Snake
-### By Jack Weber, Dave Carroll, and David D'Attile
+#### *By Jack Weber, Dave Carroll, and David D'Attile*
 
 ### TODO: CHANGE GIF
 
 ![sNNake](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
+
+
+###### *[Link to presentation and demo](#contents:)*
 
 ## Contents:
 - [1. Abstract](#1.-abstract)
@@ -37,7 +40,7 @@ Rather than implementing SS from scratch, we based our implementation on [AI for
 Instead, we used [OpenAI Gym](https://gym.openai.com/) for the RL infrastructure. Figuring out how to make Haber's repo work with Open AI Gym was initially challenging, but we ended up with a system that enabled easy and rapid experimentation. Our final repo is highly parameterized, allowing easy changes of board size, RL algorithm, reward function, and board representation.
 
 #### 2c. Assessment
-On a 5x5 board, the trained agent was able to get a high score of [BLANK] and a median score of [BLANK]. This is a pretty great result. A 5x5 board has 25 board spaces. A high score of [BLANK] is a mere [BLANK] points away from beating the game. In the methods section we will go into more depth on how we implemented the system capable of achieving such a result. In the discussion section we will go through the many experiments that we ran to go from a snake that continuously ran into walls to a snake that has relative mastery of the game.
+On a 5x5 board, trained agents were able to get a high score of 23 and a median score of 18. This is a pretty great result. A 5x5 board has 25 board spaces, so a high score of 23 is a mere 2 points away from beating the game. In the methods section we will go into more depth on how we implemented the system capable of achieving such a result. In the discussion section we will go through the many experiments that we ran to go from a snake that continuously ran into walls to a snake that has relative mastery of the game.
 
 ## 3. Related Works
 For related works, our team opted to investigate both academic literature and implementations related to our project. 
@@ -95,63 +98,90 @@ In terms of analysis and assessment, we have altered the original AI for Snake G
 Our updated repository leveraging OpenAI Gym for RL includes a script which trains different snake agents and also provides performance metrics. The performance metrics given here are simply games completed while testing, high score, average score, and median score.
 
 ## 5. Discussion
-Over the course of the project we ran [BLANK] experiments in order to improve the overall performance of the snake. Each experiment changed one or more aspects of how the training worked. In the following sections we explain our learnings through these experiments. Then we will describe the final parameters that we used to achieve a high score of [BLANK] and median score of [BLANK].
+Over the course of the project we ran 54 total experiments to improve the overall performance of the snake where each experiment consisted of 100,000,000 training steps and 100,000 testing steps. Each experiment changed one or more aspects of how the training worked. In the following sections we explain our learnings through these experiments. Then we will describe the final parameters that we used to achieve a high score of 23 and median score of 18.
+
+###### *Note 1: The raw data for results discussed below can be found [here](https://docs.google.com/spreadsheets/d/1yNhVSQuhbs6fgsL-IMh18bhgLSnmTLftfySUerWKHOE/edit?usp=sharing).*
+
+###### *Note 2: We were unable to complete PPO (with border) training by December 17th. When these results are available, this page will be updated with relevant data and analysis.*
 
 #### 5a. Board Size
 We experimented with two different board sizes: a 10x10 board and a 5x5 board. As one might expect, the snake was able to learn signicantly more quickly on a smaller board. On a 5x5 board, there are 25 pixels that make up the board representation. On a 10x10 board, there are 100 pixels. Thus on a 10x10 board, the snake needs much more time to get a deeper handle on how the game works. It takes longer for the snake to randomly find a fruit and it takes longer for the snake to randomly run into a wall.
 
-#### Avg Scores across different board sizes
+We achieved the aggregate results below by training snake agents using the DQN algorithm and 9 variations of reward strctures for both 5x5 and 10x10 game board sizes for a total of 18 experiments.
 
-|       | Avg Score | Avg High Score |
-|-------|-----------|----------------|
-| 5x5   | BLANK     | BLANK          |
-| 10x10 | BLANK     | BLANK          |
+#### Average scores across different board sizes
 
-###### *Note: for all results discussed below 10,000,000 training steps and 100,000 testing steps were used.*
+|       | Mean Score | Median Score | High Score |
+|-------|------------|--------------|------------|
+| 5x5   | 3.6241     | 3.667        | 11.8889    |
+| 10x10 | 0.9604     | 1.111        | 4.7778     |
 
 #### 5b. Board Representation
-We had two different ways of representing the board environment to the reinforcement algorithm: a board with a specified border and a board without such a border. 
+We had two different ways of representing the board environment (a 2-dimensional array of integers) to the reinforcement algorithm: a board with a specified border and a board without such a border. 
 
 Border Not Represented             |  Border Is Represented 
 :-------------------------:|:-------------------------:
 ![Border Not Represented](https://user-images.githubusercontent.com/19896216/144362121-37ca6e39-2698-4f48-95cb-16f3c3a31541.png)  |  ![Border Represented](https://user-images.githubusercontent.com/19896216/144362184-c0061707-abb6-443e-83f6-a9c8ac35f123.png)
 
-To test which representation worked better, we ran 27 experiments where the border was **not** represented ([raw results](https://docs.google.com/spreadsheets/d/1z6CgToOEh4_5flIjP7yJuhiC7Jk4EMjYcKxHdy7ojSc/edit?usp=sharing))followed by the same 27 experiments where the border **was** represented ([raw results](https://docs.google.com/spreadsheets/d/13lIOnKPxrhoSfVgDq7u9D8hhewXLtbik5OmuYL_IKBg/edit?usp=sharing)). We then took the average of the mean scores and high scores for each experiment to create the following table: 
+To test which representation worked better, we ran 18 experiments (9 using DQN algorithm and 9 using the A2C algorithm) where the border was **not** represented followed by the same 18 experiments where the border **was** represented. We hypothesized that a representation of the border would allow the model to get a more accurate understanding of the state at which the snake fails. The average of the mean scores, the median scores, and the high scores for each experiment can be found in the following table: 
 
-#### Avg Scores across different board representations
+#### Average scores across different board representations
 
 |                        | Mean Score | Median Score | High Score |
 |------------------------|------------|--------------|------------|
-| border represented     | 3.769      | 3.667        | 12.444     |
-| border not represented | 3.624      | 3.667        | 11.889     |
+| border represented     | 4.362      | 4.667        | 12.778     |
+| border not represented | 4.527      | 4.778        | 12.889     |
 
-The border representation resulted in a slight improvement to the mean and high scores. More data would be required to determine if this is statistically significant, but it makes sense that the border would help the model. Without the border representation, the snake head simply disapears when it collides with a wall. With the border representation, the snake head replaces one of the border spaces. If our hypothesis is correct, this allows the model to get a more accurate understanding of the state at which the snake fails.
+To our surprise, the border representation resulted in a slight disadvantage across mean, median, and high score averages. More data would be required to determine if this is statistically significant. This finding directly contradicted our hypothesis. 
+
+Interestingly, when viewing our results by algorithm used, we found that DQN training with border representation performed better than the same training without a border representation, yet A2C training yielded the opposite result. 
+
+|     | Border Represented | Mean Score | Median Score | High Score |
+|-----|--------------------|------------|--------------|------------|
+| DQN | FALSE              | 3.624      | 3.667        | 11.889     |
+| DQN | TRUE               | 4.177      | 3.667        | 12.444     |
+| A2C | FALSE              | 5.431      | 5.889        | 13.889     |
+| A2C | TRUE               | 4.955      | 5.667        | 13.111     |
+
+Even though A2C training without a border representation contradicted our expectations, in general it outperformed DQN which is reiterated in [section 5d](#5d.-algorithm).
 
 #### 5c. Reward Structures
-[BLANK] This section is not worth writing until we actually have data
+Our experiments used 9 custom reward structures to define whether to "punish" or "reward" snake agents at each step in the training process. Details of each reward structure, denoted RS-A through RS-I, can be found below:
 
-#### 5d. Algorithm
-Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different RL algorithms affected results. We found that...[BLANK].
+- RS-A:
+- RS-B:
+- RS-C:
+- RS-D:
+- RS-E:
+- RS-F:
+- RS-G:
+- RS-H:
+- RS-I:
 
-##### Avg Scores across different RL Algorithms
+#### 5d. Algorithms
+Using [stable-baseline3](https://stable-baselines3.readthedocs.io/en/master/#), we were quite easily able to see how different RL algorithms affected results. ] In the end, we found that the stable-baseline3 implementation of PPO performed the best.
 
-|     | Avg Score | Avg High Score |
-|-----|-----------|----------------|
-| A2C | BLANK     | BLANK          |
-| DQN | BLANK     | BLANK          |
-| PPO | BLANK     | BLANK          |
+##### Average scores across different RL algorithms
 
-The above table shows the average scores for the different RL algorithms. Each reinforcement algorithm ran the same set of 7 experiments and we averaged together the results.
+|     | Mean Score | Median Score | High Score |
+|-----|------------|--------------|------------|
+| DQN | 3.624      | 3.667        | 11.889     |
+| A2C | 5.431      | 5.889        | 13.889     |
+| PPO | 8.650      | 11.056       | 16.667     |
+
+The above table shows the averaged scores for the different RL algorithms. We performed 27 total experiments: 9 identical ones each for the DQN, A2C, and PPO algorithms. Each set of 9 experiments differed in reward structure employed, and all experiments leveraged a non-border representation of the game board.
 
 #### 5e. Best Snake
-Using all of the above learnings, we found that the best snake that we could train had the following traits:
-* DQN Algorithm
-* [BLANK] Reward Structure
-* [BLANK] Border Representation
+Using all of the above learnings, we found that the best snake that we could train in terms of high score had the following traits:
+* Algorithm: PPO
+* Reward Structure: H - punish one tenth as much after 30 idle moves
+* Border Represented: FALSE (No border represented = TRUE equivalent available)
 
-This snake achieved a high score of [BLANK]. We even tried testing it on a larger board than it was trained on which had very positive results!
+Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged reward structure G.
 
-Hypothesize on why this snake worked the best!
+The first snake achieved a high score of 23 on a 5x5 board, which is only 2 points shy of the maximum score of 25. Moreover, the version which achieved a mean score of 12.858 and a median score of 18 quickly learned how to efficiently play the game. 
+
+We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d.-algorithms)). Additionally, reward structures G and H ... [BLANK] (see [section 5c](#5c.-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
 
 ## 6. Ethics
 
@@ -185,15 +215,15 @@ Regarding the continuation of our work, we see four main topics we would have li
 
 While we created and tested many different reward functions, we anticipate there are a few ways we could improve the current reward functions. One isolated example is that we created a reward structure that rewarded the snake agent for reducing its Manhattan distance from the fruit and this reward structure performed very poorly, teaching the snake to only move back and forth. However, we realized recently that this reward structure could better teach the snake if there were a punishment for increasing the snake’s Manhattan distance from the fruit, this way the undesired fidgeting back and forth would not be rewarded but rather would be a net neutral state. However, while in that case we could have created a more intelligent reward structure, in general we also could have combined our existing functions to create new, more robust reward functions. We would have liked to explore both of these avenues for improvement if we had more time.
 
-##### 7c. Future Explorations in Game Modifications
+#### 7c. Future Explorations in Game Modifications
 
 Regarding game modifications, we were hoping to have this be an area of exploration for our project with the primary modifications in mind being to add bombs and to change the shape of the board. However, there was so much coding to be done just to get our RL working and to experiment with reward functions that we could not spare the time to implement game modifications. Also, our RL controlled snake agents only recently began performing at a fairly high level, so it would not have made much sense to prematurely throw hurdles at our underperforming snake.
 
-##### 7d. Future Explorations in Hyperparameter Tuning
+#### 7d. Future Explorations in Hyperparameter Tuning
 
 When researching the different RL algorithms available with OpenAI Gym, we realized that very much like the NNs we have seen in class, RL algorithms also take hyperparameters. However, there were already so many variations of reward functions and game parameters to test in our experiments that we could not rationalize trying to tweak the different RL algorithm hyperparameters. We also have a very limited understanding of RL algorithms in general, so we would not have understood many of the hyperparameters available for us to tweak. Thus, we simply used OpenAI Gym’s default RL algorithms, however in the future this would be a great area to explore to hopefully increase training performance. 
 
-##### 7e. Future Explorations in the AI Gaming Community
+#### 7e. Future Explorations in the AI Gaming Community
 
 Finally, our work could provide numerous valuable contributions to the AI gaming community. By making our work highly searchable, we could aid other research groups hoping to study similar problems. It took us a while to find OpenAI Gym, however with more OpenAI Gym projects out there, maybe other groups would be able to find the toolkit faster than we did. Moreover we could try to connect our repo to the OpenAI Gym repo adding Snake as yet another example of a game able to be played with the toolkit. This would demonstrate OpenAI Gym’s vast versatility. Lastly, we could create a pull request to add our changes to the AI for Snake Game repo. We were very careful to preserve backwards compatibility with the original genetic algorithm learning paradigm, so we could give back to the repo which lended us its game infrastructure to stoke further discussion and inspire more work to be done in this area of inquiry.
 
@@ -224,10 +254,12 @@ A basic overview of network inputs and outputs is described below, and further i
     - The snake agent will move in the direction of the output with the highest associated value
 
 #### 8b. Genetic Algorithm Discussion
-As discussed above, we briefly explored the initially implemented genetic algorithm to train an agent but decided to focus on RL algorithms instead. That said, before completely abandoning the effort, we trained and tested [Craig Haber's genetic algorithm snake agent](https://craighaber.github.io/AI-for-Snake-Game/website_files/index.html):
+As discussed above, we briefly explored the initially implemented genetic algorithm to train an agent but decided to focus on RL algorithms instead. That said, before completely abandoning the effort, we trained and tested [Craig Haber's genetic algorithm snake agent](https://craighaber.github.io/AI-for-Snake-Game/website_files/index.html) for 1,000 generations with the following results:
 
 ![Average Score vs  Generation](https://user-images.githubusercontent.com/19896216/137426767-8fcf979b-9b71-4596-8260-bee82b7c06da.png)
 
-The algorithm was run for 3 days 4 hours and 44 minutes on a 10x10 board. By the end of the training, the agent was getting an average score of around 10. By contrast, we trained our best performing RL algorithm on a 10x10 for [BLANK] hours and achieved an average score of [BLANK]. 
+The algorithm was run for 3 days 4 hours and 44 minutes on a 10x10 board. By the end of the training, the agent's average score was 4.95. 
 
-[BLANK] Commentary on comparison
+In contrast, we trained one of our best performing RL algorithms (PPO, reward structure G) on a 10x10 board for 6 days 4 hours and 16 minutes to achieve an average score of 6.60 after 100,000,000 training steps. 
+
+Our RL-trained snake implementation achieved a 33% higher score at the cost of nearly twice as much training time when compared to the genetic algorithm-trained agent. Given the low amount of data available as a result of long training times and our project's focus shifting away from genetic algorithms, we cannot make a definite claim regarding which training method is better suited to the SS game. However, it is worth noting that both approaches were unable to perform well, even after days of training, on a 10x10 board version of the game.
