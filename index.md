@@ -220,7 +220,7 @@ Similarly, the best snake with regards to mean and median scores of 12.858 and 1
 The first snake achieved a high score of 23 on a 5x5 board, which is only 2 points shy of the maximum score of 25. Moreover, the version which achieved a mean score of 12.858 and a median score of 18 quickly learned how to efficiently play the game. 
 
 | Untrained 5x5 sNNake | Trained 5x5 sNNake |
-|----------------------|--------------------|
+|:--------------------:|:------------------:|
 | ![Untrained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_dumb_snake_compressed.gif?raw=true) | ![Trained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_smart_snake_compressed.gif?raw=true) |
 
 We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d-algorithms)). Additionally, reward structures G and H tend to coorespond to higher mean/median and high scores, respectively (see [section 5c](#5c-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
