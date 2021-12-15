@@ -6,6 +6,8 @@
 | ![Untrained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_dumb_snake_compressed.gif?raw=true) | ![Trained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_smart_snake_compressed.gif?raw=true) |
 
 ###### *[- Link to presentation and demo](#contents:)*
+###### *[- Link to slide deck](https://docs.google.com/presentation/d/1aH9gAsUfNUAUEYVZmVjEOOKfWeldbtVQxH1p8VCeUGg/edit?usp=sharing)*
+###### *[- Link to raw experiment data](https://docs.google.com/spreadsheets/d/1yNhVSQuhbs6fgsL-IMh18bhgLSnmTLftfySUerWKHOE/edit?usp=sharing)*
 ###### *[- Link to repository](https://github.com/jackdavidweber/sNNakeCode)*
 
 ## Contents:
@@ -106,7 +108,7 @@ Over the course of the project we ran 54 total experiments to improve the overal
 
 ###### *Note 1: The raw data for results discussed below can be found [here](https://docs.google.com/spreadsheets/d/1yNhVSQuhbs6fgsL-IMh18bhgLSnmTLftfySUerWKHOE/edit?usp=sharing).*
 
-###### *Note 2: We were unable to complete PPO (with border) training by December 17th. When these results are available, this page will be updated with relevant data and analysis.*
+###### *Note 2: We were unable to complete PPO (with border) training by December 17th, 2021. When these results are available, this page will be updated with relevant data and analysis.*
 
 #### 5a. Board Size
 
