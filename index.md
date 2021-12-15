@@ -1,12 +1,12 @@
 # sNNake: Reinforcement Learning Strategies in Screen Snake
 #### *By Jack Weber, Dave Carroll, and David D'Attile*
 
-### TODO: CHANGE GIF
+| Untrained sNNake | Trained sNNake |
+|:----------------:|:--------------:|
+| ![Untrained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_dumb_snake_trimmed.gif?raw=true) | ![Trained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_smart_snake_trimmed.gif?raw=true) |
 
-![sNNake](https://github.com/jackdavidweber/cs152-project/blob/main/snake_training.gif?raw=true)
-
-
-###### *[Link to presentation and demo](#contents:)*
+###### *[- Link to presentation and demo](#contents:)*
+###### *[- Link to repository](https://github.com/jackdavidweber/sNNakeCode)*
 
 ## Contents:
 - [1. Abstract](#1.-abstract)
@@ -35,7 +35,17 @@ Another option is to get the agent to learn by trial and error. We let the agent
 This is the essence of RL algorithms. The algorithm requires us to provide rewards for actions. It then tries many strategies to complete a given task. The strategies that are rewarded are given more weight and the algorithm becomes better at the assigned task.
 
 #### 2b. Details
-Rather than implementing SS from scratch, we based our implementation on [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game) by Craig Haber. Built on top of PyGame, this repo provided us with a basic implementation and visualization of the game. It also came with files to train and test a snake agent built with a genetic algorithm. While initially we experimented with it, we eventually concluded that the genetic algorithms were beyond the scope of our project (more details in methods section). 
+Rather than implementing SS from scratch, we based our implementation on [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game) by Craig Haber. Built on top of PyGame, this repo provided us with a basic implementation and visualization of the game (see image below). It also came with files to train and test a snake agent built with a genetic algorithm. While initially we experimented with it, we eventually concluded that the genetic algorithms were beyond the scope of our project (more details in methods section). 
+
+<br>
+
+<center> <b> <i> 10x10 AI for Snake Game Board Representation </b> </i> </center>
+
+<br>
+
+<p align="center">
+    <img src="https://github.com/davidd-55/sNNake/blob/main/media/10x10_board_representation.png?raw=true" alt="10x10 board representation" width=400>
+</p>
 
 Instead, we used [OpenAI Gym](https://gym.openai.com/) for the RL infrastructure. Figuring out how to make Haber's repo work with Open AI Gym was initially challenging, but we ended up with a system that enabled easy and rapid experimentation. Our final repo is highly parameterized, allowing easy changes of board size, RL algorithm, reward function, and board representation.
 
@@ -105,6 +115,11 @@ Over the course of the project we ran 54 total experiments to improve the overal
 ###### *Note 2: We were unable to complete PPO (with border) training by December 17th. When these results are available, this page will be updated with relevant data and analysis.*
 
 #### 5a. Board Size
+
+| 5x5 Board | 10x10 Board |
+|:---------:|:-----------:|
+| ![5x5 Board](https://github.com/davidd-55/sNNake/blob/main/media/5x5_board_representation.png?raw=true) | ![10x10 Board](https://github.com/davidd-55/sNNake/blob/main/media/10x10_board_representation.png?raw=true) |
+
 We experimented with two different board sizes: a 10x10 board and a 5x5 board. As one might expect, the snake was able to learn signicantly more quickly on a smaller board. On a 5x5 board, there are 25 pixels that make up the board representation. On a 10x10 board, there are 100 pixels. Thus on a 10x10 board, the snake needs much more time to get a deeper handle on how the game works. It takes longer for the snake to randomly find a fruit and it takes longer for the snake to randomly run into a wall.
 
 We achieved the aggregate results below by training snake agents using the DQN algorithm and 9 variations of reward strctures for both 5x5 and 10x10 game board sizes for a total of 18 experiments.
@@ -209,6 +224,10 @@ Using all of the above learnings, we found that the best snake that we could tra
 Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged *RS-G*. This observation reflects the findings from the table in [section 5c](#5c.-reward-structures).
 
 The first snake achieved a high score of 23 on a 5x5 board, which is only 2 points shy of the maximum score of 25. Moreover, the version which achieved a mean score of 12.858 and a median score of 18 quickly learned how to efficiently play the game. 
+
+| Untrained 5x5 sNNake | Trained 5x5 sNNake |
+|----------------------|--------------------|
+| ![Untrained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_dumb_snake_trimmed.gif?raw=true) | ![Trained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_smart_snake_trimmed.gif?raw=true) |
 
 We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d.-algorithms)). Additionally, reward structures G and H tend to coorespond to higher mean/median and high scores, respectively (see [section 5c](#5c.-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
 
