@@ -9,14 +9,14 @@
 ###### *[- Link to repository](https://github.com/jackdavidweber/sNNakeCode)*
 
 ## Contents:
-- [1. Abstract](#1.-abstract)
-- [2. Introduction](#2.-introduction)
-- [3. Related Works](#3.-related-works)
-- [4. Methods](#4.-methods)
-- [5. Discussion](#5.-discussion)
-- [6. Ethics](#6.-ethics)
-- [7. Reflection](#7.-reflection)
-- [8. Appendix](#8.-appendix)
+- [1. Abstract](#1-abstract)
+- [2. Introduction](#2-introduction)
+- [3. Related Works](#3-related-works)
+- [4. Methods](#4-methods)
+- [5. Discussion](#5-discussion)
+- [6. Ethics](#6-ethics)
+- [7. Reflection](#7-reflection)
+- [8. Appendix](#8-appendix)
 
 ## 1. Abstract
 
@@ -89,10 +89,10 @@ As a result of the above considerations, we decided to move in a new direction a
 
 At a high level, an RL implementation of SS requires consistent input and output at each "step" of the game (i.e. each move the snake takes) and teach an agent desired behaviors. As input, at each step we provided a 2-dimensional array representation of the current state of the board where different integers coorespond to board slot states such as empty, snake body, snake head, or fruit. After the network receives this board representation as input, it outputs a single array of four values corresponding to the network's certainty on whther the agent should move left, right, up, or down given its current positioning. The snake agent then moves in the highest-certainty direction, and the reinforcement algorithm either rewards or punishes the agent based on the action taken. The agent learns how to play the game as this process is repeated for a number of specified training steps.
 
-Even though our project diverged to focus on RL methods rather than genetic algorithms, a comparison between agents trained with the genetic algorithm and RL methods can be found in the [Appendix section](#7.-appendix).
+Even though our project diverged to focus on RL methods rather than genetic algorithms, a comparison between agents trained with the genetic algorithm and RL methods can be found in the [Appendix section](#7-appendix).
 
 #### 4c. Datasets
-As a result of this project centering on RL techniques and neuroevolution, we do not utilize large datasets and supervised learning to train snake agents. Rather, we are rewarding the agent for "good" actions and punishing it for "bad" ones through a set of reward functions that we specify (see [section 5c.](#5c.-reward-structures) for details). These reward functions inform RL algorithms of "good" and "bad" moves as the agent is trained, and allows the algorithms to automatically adjust the NN's initially randomized weights and fine-tune the snake agents to learn the desired behavior.
+As a result of this project centering on RL techniques and neuroevolution, we do not utilize large datasets and supervised learning to train snake agents. Rather, we are rewarding the agent for "good" actions and punishing it for "bad" ones through a set of reward functions that we specify (see [section 5c.](#5c-reward-structures) for details). These reward functions inform RL algorithms of "good" and "bad" moves as the agent is trained, and allows the algorithms to automatically adjust the NN's initially randomized weights and fine-tune the snake agents to learn the desired behavior.
 
 Thus, we will not require an initial dataset for this project. Rather, we will generate data through simulation and experiment with how different networks perform.
 
@@ -154,7 +154,7 @@ Interestingly, when viewing our results by algorithm used, we found that DQN tra
 | A2C | FALSE              | 5.431      | 5.889        | 13.889     |
 | A2C | TRUE               | 4.955      | 5.667        | 13.111     |
 
-Even though A2C training without a border representation contradicted our expectations, in general it outperformed DQN which is reiterated in [section 5d](#5d.-algorithm).
+Even though A2C training without a border representation contradicted our expectations, in general it outperformed DQN which is reiterated in [section 5d](#5d-algorithm).
 
 #### 5c. Reward Structures
 Our experiments used 9 custom reward structures to define whether to "punish" or "reward" snake agents at each step in the training process. Details of each reward structure, denoted *RS-A* through *RS-I*, can be found below:
@@ -215,7 +215,7 @@ Using all of the above learnings, we found that the best snake that we could tra
 * Reward Structure: *RS-H*
 * Border Represented: FALSE (No border represented = TRUE equivalent available)
 
-Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged *RS-G*. This observation reflects the findings from the table in [section 5c](#5c.-reward-structures).
+Similarly, the best snake with regards to mean and median scores of 12.858 and 18, respectively, only differed in that it leveraged *RS-G*. This observation reflects the findings from the table in [section 5c](#5c-reward-structures).
 
 The first snake achieved a high score of 23 on a 5x5 board, which is only 2 points shy of the maximum score of 25. Moreover, the version which achieved a mean score of 12.858 and a median score of 18 quickly learned how to efficiently play the game. 
 
@@ -223,7 +223,7 @@ The first snake achieved a high score of 23 on a 5x5 board, which is only 2 poin
 |----------------------|--------------------|
 | ![Untrained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_dumb_snake_compressed.gif?raw=true) | ![Trained 5x5 sNNake](https://github.com/davidd-55/sNNake/blob/main/media/5x5_smart_snake_compressed.gif?raw=true) |
 
-We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d.-algorithms)). Additionally, reward structures G and H tend to coorespond to higher mean/median and high scores, respectively (see [section 5c](#5c.-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
+We hypothesize that these snakes performed the best due to being trained on the PPO algorithm which routinely outperformed DQN and A2C implementations (see [section 5d](#5d-algorithms)). Additionally, reward structures G and H tend to coorespond to higher mean/median and high scores, respectively (see [section 5c](#5c-reward-structures)). We should note that a version of these agents trained with the PPO algorithm and a board representation containing a border is not currently available. So, we cannot conclude whether our current best snakes are better than identical versions trained on a board containing a border representation.
 
 ## 6. Ethics
 
