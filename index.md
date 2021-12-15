@@ -5,7 +5,7 @@
 |:----------------:|:--------------:|
 | ![Untrained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_dumb_snake_compressed.gif?raw=true) | ![Trained sNNake](https://github.com/davidd-55/sNNake/blob/main/media/10x10_smart_snake_compressed.gif?raw=true) |
 
-###### *[- Link to presentation and demo](#contents:)*
+###### *[- Link to presentation and demo](https://youtu.be/6J6peCubHf0)*
 ###### *[- Link to slide deck](https://docs.google.com/presentation/d/1aH9gAsUfNUAUEYVZmVjEOOKfWeldbtVQxH1p8VCeUGg/edit?usp=sharing)*
 ###### *[- Link to raw experiment data](https://docs.google.com/spreadsheets/d/1yNhVSQuhbs6fgsL-IMh18bhgLSnmTLftfySUerWKHOE/edit?usp=sharing)*
 ###### *[- Link to repository](https://github.com/jackdavidweber/sNNakeCode)*
