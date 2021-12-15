@@ -37,16 +37,6 @@ This is the essence of RL algorithms. The algorithm requires us to provide rewar
 #### 2b. Details
 Rather than implementing SS from scratch, we based our implementation on [AI for Snake Game](https://github.com/craighaber/AI-for-Snake-Game) by Craig Haber. Built on top of PyGame, this repo provided us with a basic implementation and visualization of the game (see image below). It also came with files to train and test a snake agent built with a genetic algorithm. While initially we experimented with it, we eventually concluded that the genetic algorithms were beyond the scope of our project (more details in methods section). 
 
-<br>
-
-<center> <b> <i> 10x10 AI for Snake Game Board Representation </b> </i> </center>
-
-<br>
-
-<p align="center">
-    <img src="https://github.com/davidd-55/sNNake/blob/main/media/10x10_board_representation.png?raw=true" alt="10x10 board representation" width=400>
-</p>
-
 Instead, we used [OpenAI Gym](https://gym.openai.com/) for the RL infrastructure. Figuring out how to make Haber's repo work with Open AI Gym was initially challenging, but we ended up with a system that enabled easy and rapid experimentation. Our final repo is highly parameterized, allowing easy changes of board size, RL algorithm, reward function, and board representation.
 
 #### 2c. Assessment
